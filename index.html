@@ -13,22 +13,22 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    text: "Puerta cerrada",
+                    text: "Accede a tu cuenta",
                     open: false,
                 };
             },
             watch: {
                 open(value) {
                     if (value) {
-                        this.text = "Puerta abierta";
+                        this.text = "Cierra sesión";
                     } else {
-                        this.text = "Puerta cerrada";
+                        this.text = "Accede a tu cuenta";
                     }
                 }
             },
             computed: {
                 label() {
-                    return this.open ? "Cerrar" : "Abrir";
+                    return this.open ? "Salir" : "Acceder";
                 },
                 styles() {
                     return this.open ? ['open'] : ['closed'];
