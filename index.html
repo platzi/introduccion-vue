@@ -8,16 +8,34 @@
 </head>
 <body>
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app">{{ text }}</div>
+    <div id="app"></div>
     <script>
         const vm = Vue.createApp({
             data() {
                 return {
-                    text: "Hola vue"
+                    text: "Puerta cerrada",
+                    open: false
                 };
-            }
+            },
+            watch: {
+                open(value) {
+                    if (value) {
+                        this.text = "Puerta abierta";
+                    } else {
+                        this.text = "Puerta cerrada";
+                    }
+                }
+            },
+            computed: {
+                label() {
+                    return this.open ? "Cerrar" : "Abrir";
+                }
+            },
+            template: `
+                <div>{{ text }}</div>
+                <button @click="open = !open">{{ label }}</button>
+            `
         }).mount("#app");
-        console.log(vm);
     </script>
 </body>
 </html>
