@@ -8,16 +8,16 @@
 </head>
 <body>
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app">{{ text }}</div>
+    <div id="app"></div>
     <script>
         const vm = Vue.createApp({
             data() {
                 return {
-                    text: "Hola vue"
+                    text: "Hola Vue"
                 };
-            }
+            },
+            template: `{{ text }}`
         }).mount("#app");
-        console.log(vm);
     </script>
 </body>
 </html>
