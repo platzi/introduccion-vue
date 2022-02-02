@@ -8,16 +8,35 @@
 </head>
 <body>
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app">{{ text }}</div>
+    <div id="app"></div>
     <script>
-        const vm = Vue.createApp({
+        const app = Vue.createApp({
             data() {
                 return {
-                    text: "Hola vue"
+                    text: "Hola Vue"
                 };
-            }
-        }).mount("#app");
-        console.log(vm);
+            },
+            provide() {
+                return {
+                    otroTexto: this.text
+                };
+            },
+            template: `
+                <div>{{ text }}</div>
+                <otro />
+            `
+        });
+        
+        app.component("otro", {
+            template: `<tercer />`
+        });
+
+        app.component("tercer", {
+            inject: ["otroTexto"],
+            template: `<div>{{ otroTexto }}</div>`
+        });
+
+        const vm =  app.mount("#app");
     </script>
 </body>
 </html>
