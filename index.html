@@ -8,16 +8,25 @@
 </head>
 <body>
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app">{{ text }}</div>
+    <div id="app"></div>
     <script>
-        const vm = Vue.createApp({
+        const app = Vue.createApp({
             data() {
                 return {
-                    text: "Hola vue"
+                    text: "Hola Vue"
                 };
-            }
-        }).mount("#app");
-        console.log(vm);
+            },
+            template: `<v-button ref="elemento" :label="text"></v-button>`
+        });
+
+        app.component("v-button", {
+            props: ["label"],
+            template: `<button>{{ label }}</button>`
+        });
+
+        const vm = app.mount("#app");
+
+        console.log(vm.$props);
     </script>
 </body>
 </html>
