@@ -15,6 +15,7 @@
                 return {
                     text: "Accede a tu cuenta",
                     open: false,
+                    username: ""
                 };
             },
             watch: {
@@ -23,6 +24,7 @@
                         this.text = "Cierra sesión";
                     } else {
                         this.text = "Accede a tu cuenta";
+                        this.username = "";
                     }
                 }
             },
@@ -37,7 +39,17 @@
             template: `
             <div class="container" :class="styles">
                 <h2>{{ text }}</h2>
-                <button @click="open = !open">{{ label }}</button>
+                <div v-if="open">
+                    <p>Hola, {{ username }}</p>
+                </div>
+                <div v-else>
+                    <div>Username</div>
+                    <input type="text" v-model="username" />    
+                </div>
+                <button @click="open = !open">
+                    <div v-if="!open">Acceder</div>
+                    <div v-else>Salir</div>
+                </button>
             </div>
             `
         }).mount("#app");
